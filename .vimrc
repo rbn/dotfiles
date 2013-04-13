@@ -261,7 +261,9 @@ map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
 
-map <leader>vsp :botright 100 vsplit 
+map <leader>vsp :botright 100 vsplit<cr>:CommandTFlush<cr>\|:CommandT<cr>
+map <leader>sp  :belowright sp<cr>:CommandTFlush<cr>\|:CommandT<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SWITCH BETWEEN TEST AND PRODUCTION CODE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -376,4 +378,10 @@ command! OpenChangedFiles :call OpenChangedFiles()
 " Insert the current time
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" rbn custom
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight Comment ctermfg=lightGray
 
