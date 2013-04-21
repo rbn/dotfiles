@@ -1,4 +1,4 @@
-" This is Gary Bernhardt's .vimrc file
+" This is (an adaptation of) Gary Bernhardt's .vimrc file
 " vim:set ts=2 sts=2 sw=2 expandtab:
 
 call pathogen#runtime_append_all_bundles()
@@ -18,6 +18,7 @@ set laststatus=2
 set showmatch
 set incsearch
 set hlsearch
+set number
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
 " highlight current line

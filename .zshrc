@@ -65,3 +65,6 @@ alias tw="resize -s 40 100"
 alias tl="resize -s 100 80"
 
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:./
+
+function man() { man1 $1 | less }
+function cat() { cat1 $1 | less }
