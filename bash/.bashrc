@@ -160,14 +160,15 @@ source "$OSH"/oh-my-bash.sh
 ### Customizations ###
 ####################################
 
-export PATH="/opt/nvim/bin:$PATH"
-
-# Added by Antigravity CLI installer
-export PATH="/home/nymanr/.local/bin:$PATH"
+# scripts
+export PATH="$HOME/bin:/opt/nvim/bin:$HOME/.local/bin:$PATH"
+PATH="$(printf '%s' "$PATH" | tr ':' '\n' | awk '!seen[$0]++' | paste -sd ':' -)"
+export PATH
 
 # adding dev startup script
 alias rm='rm -i'
-alias ls='ls -al --color=auto'
+alias ls='ls -l --color=auto'
+alias lsal='ls -al --color=auto'
 alias vim='nvim'
 alias dev="$HOME/scripts/start-dev.sh"
 alias devb="nvim ~/.bashrc"
