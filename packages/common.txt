@@ -1,0 +1,10 @@
+git
+stow
+tmux
+gcc
+make
+gdb
+clang
+clangd
+clang-format
+ripgrep

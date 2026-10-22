@@ -167,6 +167,7 @@ export PATH="/home/nymanr/.local/bin:$PATH"
 
 # adding dev startup script
 alias rm='rm -i'
+alias ls='ls -al --color=auto'
 alias vim='nvim'
 alias dev="$HOME/scripts/start-dev.sh"
 alias devb="nvim ~/.bashrc"
@@ -202,5 +203,37 @@ ccrun() {
 }
 
 pyserve() {
-    python3 -m http.server "${1:-8080}" --bind 127.0.0.1
+  python3 -m http.server "${1:-8080}" --bind 127.0.0.1
 }
+
+# Check dotfiles once per day
+# Daily dotfiles Git status reminder
+if [[ $- == *i* && -d "$HOME/dotfiles/.git" ]]; then
+    CHECK_FILE="$HOME/.cache/dotfiles-last-check"
+
+    # Check once every 24 hours
+    if [[ ! -f "$CHECK_FILE" ]] ||
+       (( $(date +%s) - $(stat -c %Y "$CHECK_FILE") >= 86400 )); then
+
+        if [[ -n "$(git -C "$HOME/dotfiles" status --porcelain)" ]]; then
+            printf '\n\033[1;38;2;0;225;240m'
+            cat <<'EOF'
++------------------------------------------+
+|                                          |
+|   !!  DOTFILES NEED ATTENTION  !!        |
+|                                          |
+|   Uncommitted changes detected           |
+|                                          |
++------------------------------------------+
+
+EOF
+            printf '\033[0m'
+            printf 'Review: git -C ~/dotfiles status\n\n'
+            printf '\n\n'
+        fi
+
+        # Record the time of the last check
+        mkdir -p "$HOME/.cache"
+        touch "$CHECK_FILE"
+    fi
+fi
